@@ -165,34 +165,85 @@ df = pandas.read_csv()
 
 Quel est le type de l'objet `df`?
 ```
-
+pandas.core.frame.DataFrame
 ```
 
 ##### Descriptions d'une table de données
 Que permettent les méthodes suivantes?
 ###### df.shape
 ```
+ndarray.shape
+Tuple of array dimensions.
 ```
 ###### df.head()
 ```
+Return the first n rows.
+
+This function returns the first n rows for the object based on position. It is useful for quickly testing if your object has the right type of data in it.
+
+For negative values of n, this function returns all rows except the last n rows, equivalent to df[:-n].
+
+Parameters
+nint, default 5
+Number of rows to select.
+
+Returns
+same type as caller
+The first n rows of the caller object.
 ```
 ###### df.tail()
 ```
+Return the last n rows.
+
+This function returns last n rows from the object based on position. It is useful for quickly verifying data, for example, after sorting or appending rows.
+
+For negative values of n, this function returns all rows except the first n rows, equivalent to df[n:].
+
+Parameters
+nint, default 5
+Number of rows to select.
+
+Returns
+type of caller
+The last n rows of the caller object.
 ```
 ###### df.columns
 ```
+The column labels of the DataFrame.
+
 ```
 ###### df.dtypes
 ```
+Return the dtypes in the DataFrame.
+
+This returns a Series with the data type of each column. The result’s index is the original DataFrame’s columns.
 ```
 ###### df.info
 ```
+Print a concise summary of a DataFrame.
+
+This method prints information about a DataFrame including the index dtype and columns, non-null values and memory usage.
+
+
+df.info(verbose=True)
+Prints information of all columns.
+
+df.info(verbose=False)
+Prints a summary of columns count and its dtypes but not per column information.
 ```
 ###### df.describe()
 ```
+Generate descriptive statistics.
+
+Descriptive statistics include those that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding NaN values.
+
+Analyzes both numeric and object series, as well as DataFrame column sets of mixed data types. The output will vary depending on what is provided. Refer to the notes below for more detail.
 ```
 ###### df.dropna()
 ```
+Remove missing values.
+
+See the User Guide for more on which values are considered missing, and how to work with missing data.
 ```
 
 ##### Accès aux éléments d'une table de données
@@ -202,6 +253,9 @@ values = df[['Description', 'Gene Symbol']]
 ```
 
 Quel est le type de `values` ?
+```
+pandas.core.frame.DataFrame
+```
 
 Verifiez si certaines méthodes de `DataFrame` lui sont applicables.
 Ce type supporte l'accès par indice et les slice `[a:b]`
@@ -212,17 +266,17 @@ On peut accéder aux valeurs du DataFrame via des indices ou plages d'indice. La
 Il y a différentes manières de le faire, l'utilisation de `.iloc[slice_ligne,slice_colonne]` constitue une des solutions les plus simples. N'oublions pas que shape permet d'obtenir les dimensions (lignes et colonnes) du DataFrame.
 ###### Acceder aux cinq premières lignes de toutes les colonnes
 ```python
-
+df.iloc[:5]
 ```
 
 ###### Acceder à toutes les lignes de la dernière colonne
 ```python
-
+df.iloc[:,[6]]
 ```
 
 ###### Acceder aux cinq premières lignes des colonnes 0, 2 et 3
 ```python
-
+df.iloc[:5,[0,2,3]]
 ```
 
 ##### Conversion de type
